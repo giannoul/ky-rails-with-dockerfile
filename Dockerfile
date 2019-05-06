@@ -9,9 +9,8 @@ RUN sed -i '/tzinfo-data/d' ./Gemfile
 RUN echo "gem 'tzinfo-data','>=1.2018.5'">>Gemfile
 RUN echo "gem 'pg', '~> 0.21'">>Gemfile
 RUN bundle install --no-cache
-RUN which bundle
 RUN chmod 777 -R /tmp/app/firstApp
 RUN bundle exec rake db:migrate
-CMD bundle exec rails server -p 5000 -e development 
-RUN curl -v http://127.0.0.1:5000 
+
 EXPOSE 5000
+ENTRYPOINT ["/usr/local/bin/bundle", "exec", "rails", "server", "-p", "5000", "-e", "development"]
