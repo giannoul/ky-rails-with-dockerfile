@@ -5,6 +5,7 @@ COPY Gemfile /tmp/app/Gemfile
 RUN bundle install -j 20 --path /usr/local/lib/ruby/gems/2.4.0
 RUN rails new firstApp
 WORKDIR /tmp/app/firstApp
+RUN sed -i '/tzinfo-data/d' ./Gemfile
 RUN echo "gem 'tzinfo-data','>=1.2018.5'">>Gemfile
 RUN echo "gem 'pg', '~> 0.21'">>Gemfile
 RUN bundle install --no-cache
