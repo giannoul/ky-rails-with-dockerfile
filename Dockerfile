@@ -8,4 +8,3 @@ WORKDIR /tmp/app/firstApp
 RUN echo "gem 'tzinfo-data','>=1.2018.5'">>Gemfile
 RUN echo "gem 'pg', '~> 0.21'">>Gemfile
 RUN bundle install --no-cache
-RUN bundle exec rails server -b 0.0.0.0 -e development
