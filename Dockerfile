@@ -9,5 +9,6 @@ RUN echo "gem 'tzinfo-data','>=1.2018.5'">>Gemfile
 RUN echo "gem 'pg', '~> 0.21'">>Gemfile
 RUN bundle install --no-cache
 RUN chmod 777 -R /tmp/app/firstApp
+RUN bundle exec rake db:migrate
 CMD bundle exec rails server -b 0.0.0.0 -e development -p 5000
 EXPOSE 5000
