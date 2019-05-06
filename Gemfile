@@ -9,4 +9,4 @@ gem 'jquery-rails'
 #gem "pg", "~> 0.21"
 #gem 'ruby-debug-ide'
 #gem 'debase'
-gem 'sqlite3', '=1.4.1'
+gem 'sqlite3', '>= 1.3.6'
