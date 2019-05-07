@@ -12,6 +12,5 @@ RUN bundle install --no-cache
 RUN chmod 777 -R /tmp/app/firstApp
 RUN bundle exec rake db:migrate
 
-EXPOSE 3000
-CMD ["cd /tmp/app/firstApp && /usr/local/bin/bundle exec rails server"]
+CMD ["cd /tmp/app/firstApp && /usr/local/bin/bundle exec rails server -p 5000]
 #ENTRYPOINT ["/usr/local/bin/bundle", "exec", "rails", "server", "-p", "5000", "-e", "development"]
