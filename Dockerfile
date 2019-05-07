@@ -13,5 +13,5 @@ RUN chmod 777 -R /tmp/app/firstApp
 RUN bundle exec rake db:migrate
 
 EXPOSE 3000
-CMD ["/usr/local/bin/bundle", "exec", "rails", "server", "-e", "development"]
+CMD ["/usr/local/bin/bundle", "exec", "rails", "server", "-p", "80", "-e", "development"]
 #ENTRYPOINT ["/usr/local/bin/bundle", "exec", "rails", "server", "-p", "5000", "-e", "development"]
