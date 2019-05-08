@@ -31,10 +31,10 @@ RUN bundle exec rake assets:precompile
 
 # Expose port 3000 to the Docker host, so we can access it 
 # from the outside.
-EXPOSE 3000
+EXPOSE 5000
 
 # The main command to run when the container starts. Also 
 # tell the Rails dev server to bind to all interfaces by 
 # default.
 #CMD ["bundle", "exec", "rails", "server", "-b","0.0.0.0", "-p","3000","-e", "development"]
-CMD bundle exec rails server -b 0.0.0.0 -p 3000 -e development 
+CMD bundle exec rails server -b 0.0.0.0 -p 5000 -e development 
