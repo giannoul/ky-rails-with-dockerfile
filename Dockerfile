@@ -1,5 +1,5 @@
 FROM ruby:2.4.0-alpine
-RUN apk update && apk add nodejs build-base libxml2-dev libxslt-dev postgresql postgresql-dev sqlite sqlite-dev busybox-suid curl
+RUN apk update && apk add nodejs build-base libxml2-dev libxslt-dev postgresql postgresql-dev sqlite sqlite-dev busybox-suid curl bash
 
 
 # Configure the main working directory. This is the base 
