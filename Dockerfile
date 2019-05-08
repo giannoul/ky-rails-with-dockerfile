@@ -31,6 +31,7 @@ RUN bundle exec rake assets:precompile
 # Expose port 3000 to the Docker host, so we can access it 
 # from the outside.
 EXPOSE 3000
+ENV PORT 3000
 ENV RAILS_LOG_TO_STDOUT
 RUN echo $PORT
 RUN echo $RAILS_LOG_TO_STDOUT
@@ -39,4 +40,4 @@ RUN echo $RAILS_LOG_TO_STDOUT
 # tell the Rails dev server to bind to all interfaces by 
 # default.
 #CMD ["bundle", "exec", "rails", "server", "-b","0.0.0.0", "-p","3000","-e", "development"]
-CMD bundle exec rails server -b 0.0.0.0 -p ${PORT:-5000} -e development
+CMD bundle exec rails server -b 0.0.0.0 -p $PORT -e development
