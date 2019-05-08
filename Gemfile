@@ -61,3 +61,4 @@ end
 gem 'tzinfo-data','>=1.2018.5'
 gem 'pg', '~> 0.21'
 gem 'listen', '~> 3.1.5'
+gem 'bundler', '~> 1.16.2'
