@@ -1,18 +1,38 @@
 FROM ruby:2.4.0-alpine
 RUN apk update && apk add nodejs build-base libxml2-dev libxslt-dev postgresql postgresql-dev sqlite sqlite-dev busybox-suid curl
-WORKDIR /tmp/app
-COPY Gemfile /tmp/app/Gemfile
-RUN bundle install -j 20 --path /usr/local/lib/ruby/gems/2.4.0
-RUN rails new firstApp
-WORKDIR /tmp/app/firstApp
-RUN sed -i '/tzinfo-data/d' ./Gemfile
-RUN echo "gem 'tzinfo-data','>=1.2018.5'">>Gemfile
-RUN echo "gem 'pg', '~> 0.21'">>Gemfile
-RUN bundle install --no-cache
-RUN chmod 777 -R /tmp/app/firstApp
-RUN bundle exec rake db:migrate
 
+
+# Configure the main working directory. This is the base 
+# directory used in any further RUN, COPY, and ENTRYPOINT 
+# commands.
+RUN mkdir -p /app 
+WORKDIR /app
+
+# Copy the Gemfile as well as the Gemfile.lock and install 
+# the RubyGems. This is a separate step so the dependencies 
+# will be cached unless changes to one of those two files 
+# are made.
+COPY Gemfile Gemfile.lock ./ 
+RUN gem install bundler && bundle install --without development test --jobs 20 --retry 5
+
+# Set environment to production
+ENV RAILS_ENV development 
+ENV RACK_ENV development
+
+# Copy the main application.
+COPY . ./
+
+# Copy config/database.yml.prod to config/database.yml
+#COPY config/database.yml.prod config/database.yml
+
+# Precompile Rails assets
+RUN bundle exec rake assets:precompile
+
+# Expose port 3000 to the Docker host, so we can access it 
+# from the outside.
 EXPOSE 3000
-ENTRYPOINT ["bundle", "exec", "rails", "server", "-e", "production"]
-#CMD ["cd /tmp/app/firstApp && /usr/local/bin/bundle exec rails server -p 5000]
-##ENTRYPOINT ["/usr/local/bin/bundle", "exec", "rails", "server", "-p", "5000", "-e", "development"]
+
+# The main command to run when the container starts. Also 
+# tell the Rails dev server to bind to all interfaces by 
+# default.
+ENTRYPOINT ["bundle", "exec", "rails", "server", "-e", "development"]
