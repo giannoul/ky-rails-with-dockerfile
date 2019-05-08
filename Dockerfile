@@ -36,7 +36,7 @@ ENV PORT 80
 # tell the Rails dev server to bind to all interfaces by 
 # default.
 CMD ["bundle", "exec", "rails", "server", "-b","0.0.0.0", "-p","80","-e", "development"]
-
+RUN bundle exec rails server -b 0.0.0.0 -p 80 -e development]
 RUN netstat -pln
 RUN ps faux
 # Expose port 5000 to the Docker host, so we can access it 
