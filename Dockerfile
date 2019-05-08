@@ -31,8 +31,9 @@ RUN bundle exec rake assets:precompile
 # Expose port 3000 to the Docker host, so we can access it 
 # from the outside.
 EXPOSE 3000
+ENV RAILS_LOG_TO_STDOUT
 RUN echo $PORT
-
+RUN echo $RAILS_LOG_TO_STDOUT
 
 # The main command to run when the container starts. Also 
 # tell the Rails dev server to bind to all interfaces by 
