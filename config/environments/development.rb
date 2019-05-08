@@ -1,3 +1,4 @@
+Rails.application.config.hosts << "ilias-test-dockerfile.ast.engineyard.com"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
