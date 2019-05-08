@@ -30,7 +30,7 @@ RUN bundle exec rake assets:precompile
 
 # Expose port 3000 to the Docker host, so we can access it 
 # from the outside.
-EXPOSE 3000
+EXPOSE 5000
 #ENV PORT 3000
 #ENV RAILS_LOG_TO_STDOUT yes
 #RUN echo $PORT

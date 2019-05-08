@@ -6,8 +6,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Rails.application.config.hosts << "ilias-test-dockerfile.ast.engineyard.com"
-
 module FirstApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -19,4 +17,3 @@ module FirstApp
     # the framework and any gems in your application.
   end
 end
-
