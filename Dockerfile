@@ -38,4 +38,5 @@ EXPOSE 3000
 # tell the Rails dev server to bind to all interfaces by 
 # default.
 #CMD ["bundle", "exec", "rails", "server", "-b","0.0.0.0", "-p","3000","-e", "development"]
-CMD bundle exec rails server -b 0.0.0.0 -e development
+#CMD bundle exec rails server -b 0.0.0.0 -e development
+CMD rails server
