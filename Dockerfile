@@ -12,7 +12,7 @@ WORKDIR /app
 # the RubyGems. This is a separate step so the dependencies 
 # will be cached unless changes to one of those two files 
 # are made.
-COPY Gemfile Gemfile.lock ./ 
+COPY Gemfile ./ 
 RUN gem install bundler && bundle install --without development test --jobs 20 --retry 5
 
 # Set environment to production
