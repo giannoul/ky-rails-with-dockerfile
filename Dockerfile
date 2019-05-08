@@ -37,6 +37,7 @@ ENV PORT 80
 # default.
 CMD ["bundle", "exec", "rails", "server", "-b","0.0.0.0", "-p","80","-e", "development"]
 
+RUN netstat
 # Expose port 5000 to the Docker host, so we can access it 
 # from the outside.
 EXPOSE 80
