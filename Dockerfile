@@ -32,7 +32,7 @@ RUN bundle exec rake assets:precompile
 # from the outside.
 EXPOSE 3000
 ENV PORT 3000
-ENV RAILS_LOG_TO_STDOUT
+ENV RAILS_LOG_TO_STDOUT yes
 RUN echo $PORT
 RUN echo $RAILS_LOG_TO_STDOUT
 
