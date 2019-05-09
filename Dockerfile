@@ -15,7 +15,7 @@ WORKDIR /app
 COPY Gemfile ./ 
 RUN gem install bundler -v '1.16.2' && bundle install --without development test --jobs 20 --retry 5
 
-# Set environment to development
+# Set environment to production
 ENV RAILS_ENV development 
 ENV RACK_ENV development
 ENV RAILS_LOG_TO_STDOUT enabled
@@ -23,15 +23,18 @@ ENV RAILS_LOG_TO_STDOUT enabled
 # Copy the main application.
 COPY . ./
 
+# Copy config/database.yml.prod to config/database.yml
+#COPY config/database.yml.prod config/database.yml
+
 # Precompile Rails assets
 RUN bundle exec rake assets:precompile
 
-# Expose port 5000 to the Docker host, so we can access it 
-# from the outside. This is the same as the one set with
-# `deis config:set PORT 5000`
+# Expose port 3000 to the Docker host, so we can access it 
+# from the outside.
 EXPOSE 5000
 
 # The main command to run when the container starts. Also 
 # tell the Rails dev server to bind to all interfaces by 
 # default.
-CMD bundle exec rails server -b 0.0.0.0 -p 5000 -e development 
+#CMD ["bundle", "exec", "rails", "server", "-b","0.0.0.0", "-p","3000","-e", "development"]
+CMD bundle install && bundle exec rails server -b 0.0.0.0 -p 5000 -e development 
