@@ -6,7 +6,8 @@ RUN apk update
 RUN apk add filebeat
 RUN rm /etc/filebeat/filebeat.yml
 COPY filebeat.yml /etc/filebeat
-RUN filebeat -c /etc/filebeat/filebeat.yml &
+RUN filebeat test output -c  /etc/filebeat/filebeat.yml
+#RUN filebeat -c /etc/filebeat/filebeat.yml &
 
 # Configure the main working directory. This is the base 
 # directory used in any further RUN, COPY, and ENTRYPOINT 
@@ -42,4 +43,4 @@ EXPOSE 5000
 # The main command to run when the container starts. Also 
 # tell the Rails dev server to bind to all interfaces by 
 # default. 
-CMD bundle exec rails server -b 0.0.0.0 -p 5000 -e development 
+CMD filebeat -c /etc/filebeat/filebeat.yml && bundle exec rails server -b 0.0.0.0 -p 5000 -e development 
