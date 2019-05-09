@@ -26,7 +26,7 @@ RUN gem install bundler -v '1.16.2' && bundle install --without development test
 # Set environment to production
 ENV RAILS_ENV development 
 ENV RACK_ENV development
-ENV RAILS_LOG_TO_STDOUT enabled
+#ENV RAILS_LOG_TO_STDOUT enabled
 
 # Copy the main application.
 COPY . ./
