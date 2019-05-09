@@ -35,6 +35,6 @@ EXPOSE 5000
 
 # The main command to run when the container starts. Also 
 # tell the Rails dev server to bind to all interfaces by 
-# default.
+# default. 
 #CMD ["bundle", "exec", "rails", "server", "-b","0.0.0.0", "-p","3000","-e", "development"]
 CMD bundle install && bundle exec rails server -b 0.0.0.0 -p 5000 -e development 
