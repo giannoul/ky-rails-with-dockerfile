@@ -1,4 +1,5 @@
 require 'lograge'
+
 class Logging
   def self.configure(config)
     # LOGGING!

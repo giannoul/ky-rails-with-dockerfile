@@ -27,7 +27,7 @@ COPY . ./
 #COPY config/database.yml.prod config/database.yml
 
 # Precompile Rails assets
-RUN bundle exec rake assets:precompile
+#RUN bundle exec rake assets:precompile
 
 # Expose port 3000 to the Docker host, so we can access it 
 # from the outside.
