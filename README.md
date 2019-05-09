@@ -1,33 +1,9 @@
-# ky-rails-with-dockerfile
+# ky-rails-with-dockerfile: filebeat branch
 
-This repository contains a simple rails 5 application along with the instructions on how to get it deployed in KontainerYard. The tool used is `deis`.
+This branch introduces `filebeat` for log shipping. The installation is straightforward and the strarting is just the command running in background. It is mostly a proof of concept in order to not loose this configuration ;)
+In this branch we need the parameter `RAILS_LOG_TO_STDOUT` disabled so that the logs are written and shipped. Also, keep in mind that the logs here are in JSON format using the gem `lograge` and the appropriate rails configuration in files:
 
-The rails application is using the `development` configuration in order for it to run without the need for external db services.
+- config/logging.rb
+- config/application.rb
 
-### Steps for deployment
-
-  1. Create a new application
-  2. Set the appropriate configuration variables for our application
-  3. Deploy
-
-### Create a new application
-The command to use is:
-```
-deis create igiannoulas-rails-deis
-```
-
-### Set the appropriate configuration variables
-The command to use is:
-```
-deis config:set PORT=5000
-```
-This is the port that our application will use in order to receive the requests that Load Balancer will relay.
-
-### Deploy
-Given that you are inside the directory issue:
-```
-git add .
-git commit -m "My first deploy"
-git push deis master
-```
-After the deployment takes place you may check the logs by issuing `deis logs` and the running application information via `deis info`.
+Oh, and a last thing: rake taks don't work.

@@ -8,7 +8,6 @@ RUN rm /etc/filebeat/filebeat.yml
 COPY filebeat.yml /etc/filebeat
 RUN chmod go-w /etc/filebeat/filebeat.yml
 RUN filebeat test output -c /etc/filebeat/filebeat.yml
-#RUN filebeat -c /etc/filebeat/filebeat.yml &
 
 # Configure the main working directory. This is the base 
 # directory used in any further RUN, COPY, and ENTRYPOINT 
@@ -26,7 +25,6 @@ RUN gem install bundler -v '1.16.2' && bundle install --without development test
 # Set environment to production
 ENV RAILS_ENV development 
 ENV RACK_ENV development
-#ENV RAILS_LOG_TO_STDOUT enabled
 
 # Copy the main application.
 COPY . ./
