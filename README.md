@@ -1,24 +1,33 @@
-# README
+# ky-rails-with-dockerfile
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repository contains a simple rails 5 application along with the instructions on how to get it deployed in KontainerYard. The tool used is `deis`.
 
-Things you may want to cover:
+The rails application is using the `development` configuration in order for it to run without the need for external db services.
 
-* Ruby version
+### Steps for deployment
 
-* System dependencies
+  1. Create a new application
+  2. Set the appropriate configuration variables for our application
+  3. Deploy
 
-* Configuration
+### Create a new application
+The command to use is:
+```
+deis create igiannoulas-rails-deis
+```
 
-* Database creation
+### Set the appropriate configuration variables
+The command to use is:
+```
+deis config:set PORT=5000
+```
+This is the port that our application will use in order to receive the requests that Load Balancer will relay.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Deploy
+Given that you are inside the directory issue:
+```
+git add .
+git commit -m "My first deploy"
+git push deis master
+```
+After the deployment takes place you may check the logs by issuing `deis logs` and the running application information via `deis info`.
