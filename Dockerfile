@@ -6,7 +6,7 @@ RUN apk update
 RUN apk add filebeat
 RUN rm /etc/filebeat/filebeat.yml
 COPY filebeat.yml /etc/filebeat
-RUN chmod 777 /etc/filebeat/filebeat.yml
+RUN chmod go-w /etc/filebeat/filebeat.yml
 RUN filebeat test output -c /etc/filebeat/filebeat.yml
 #RUN filebeat -c /etc/filebeat/filebeat.yml &
 
